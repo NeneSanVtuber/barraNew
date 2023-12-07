@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barra New</title>
+</head>
+<style>
+  body{
+    user-select: none;
+  }
+  range{
+    border: 0;
+    margin: 0;
+    display: block;
+    width: 90%;
+    height: 5px;
+    background: #474747;
+    position: relative;
+    border-radius: 5px;
+  }
+  range:hover{
+    transition: 0.2s;
+    height: 10px;
+  }
+  reco{
+    /* cursor: none; */
+    pointer-events:none;
+    border: 0;
+    margin: 0;
+    display: block;
+    background: #ff0000;
+    width:50% ;
+    height: 100%;
+    position: absolute;
+    border-radius: 5px;
+
+  }
+  ico{
+    /* cursor: none; */
+    pointer-events:none;
+    border: 0;
+    margin: 0;
+    display: block;
+    background: #ff0000;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    bottom: 0;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+  }
+  video{
+    /* width: 400px; */
+    height: 100%;
+    /* display: block; */
+  }
+  span{
+    display: inline-block;
+    font-size: xx-large;
+  }
+</style>
+<body>
+  <main>
+    <video id="video" controls autoplay src="http://otane.datafiles.cd/Animes/Media-Nene/Time_2/bushnell_05_2023-06-04-14-52-28_1685908348637.mp4"></video>
+    <span id="infovideo">
+      asdja
+      asfaf
+    </span>
+    <span id="barraInfo">
+      asdja
+      asfaf
+    </span>
+    <range  id="range">
+      <reco id="reco"></reco>
+      <ico id="ico"></ico>
+    </range>
+    <span id="textm"></span>
+  </main>
+
+  <script>
+    var range=document.getElementById('range');
+    var textm=document.getElementById('textm');
+    var reco=document.getElementById('reco');
+    var ico=document.getElementById('ico');
+    var ico=document.getElementById('ico');
+    var infoVideo =document.getElementById('infovideo');
+    var barraInfo =document.getElementById('barraInfo');
+    var presest=false;
+    video.addEventListener('timeupdate',()=>{
+      // alert("Hola");
+      var Time = video.duration;
+      var current=video.currentTime;
+      infoVideo.innerHTML="Video <br> D:"+Time+"<br> C:"+current;
+      setPosition((current/Time)*100);
+    })
+    document.addEventListener('mousemove',(mm)=>{
+      if(presest){
+        log(mm);
+      }
+      
+      });
+
+    range.addEventListener('mousemove',(mm)=>{
+      
+      // log(mm.target.targetName);
+      if(mm.target && presest && mm.target.id=='range'){
+        log(mm.target.id=='range');
+        calcularPos(mm,1);
+      }
+      
+    });
+    range.addEventListener('click', (e)=>{
+      // log(e);
+      calcularPos(e,1);
+    });
+    range.addEventListener('mousedown', ()=>{
+    presest=true;
+      
+    });
+    range.addEventListener('mouseup', ()=>{
+      presest = false;
+    });
+    document.addEventListener('mouseup', ()=>{
+      presest = false;
+    });
+    
+   
+    function calcularPos( mm ,type){
+      var totalWidth=range.offsetWidth;
+      var positionOfMouseInTheElement=mm['layerX'];
+      var newPost=(positionOfMouseInTheElement/totalWidth)*100
+      log(newPost+'%');
+      log(video.duration+' s');
+      var newCurrent=(video.duration*newPost)/100;
+      log(newCurrent+' S');
+      video.currentTime=newCurrent;
+      setPosition(newPost);
+      barraInfo.innerHTML="W:"+totalWidth+"<br> %:"+newPost+"<br> NewC:"+newCurrent;
+    }
+
+
+    function position(valor){
+      // post=50;
+      // ico.style.left=valor+"%";
+      // reco.style.width=valor+"%";
+    }
+    function setPosition(valor) {
+      ico.style.left=valor+"%";
+      reco.style.width=valor+"%";
+    }
+
+
+    function log(txt){
+        textm.innerText=txt
+        console.log(txt);
+      }
+  </script>
+</body>
+</html>
