@@ -8,7 +8,7 @@ range{
   margin: 0;
   display: block;
   width: 90%;
-  height: 15px;
+  height: 10px;
   background: #474747;
   position: relative;
   bottom: 50px;
@@ -18,14 +18,20 @@ range{
   /* left: 0;
   right: 0; */
 }
-.track-range{
-  background: #f0f;
+.track-range2{
+  background: linear-gradient(90deg,#00f 50%,#f00);
 }
-
+.range2{
+  height: 5px;
+}
+.thumb-range2{
+  height: 5px;
+  display: none;
+}
 
 range:hover{
   transition: 0.2s;
-  height: 30px;
+  height: 15px;
 }
 track{
   /* cursor: none; */

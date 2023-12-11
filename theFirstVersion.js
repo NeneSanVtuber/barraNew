@@ -58,7 +58,7 @@ function setEventRange(positionOnDisplay,rangeWidth){
         }
     });
 }
-function calPositionOnClient(event, positionOnDisplay, rangeWidth){
+function calculatePositionOnClient(event, positionOnDisplay, rangeWidth){
   var newValueForRange=event['clientX']-positionOnDisplay;
   if(newValueForRange<=rangeWidth & newValueForRange>=0){
     log('newValueForRange: '+newValueForRange + "rangeWidth: "+rangeWidth);
