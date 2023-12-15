@@ -1,0 +1,1 @@
+RangeOtane.range2.setMediaSlider(video);

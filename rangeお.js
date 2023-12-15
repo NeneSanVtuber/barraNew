@@ -67,6 +67,7 @@ class rangeOtane{
       var newValue=(this.media.currentTime/this.media.duration)*100;
       this.setPosition(newValue);
     });  
+    return 1;
     
   }
   setMediaNewCurrent(newCurrentTime){
@@ -90,8 +91,10 @@ class rangeOtane{
 //     this.setPosition(newValue);
 //   }
 // }
-var range = document.getElementsByTagName("range");
 var RangeOtane={};
+// document.addEventListener("DOMContentLoaded", ()=> {
+var range = document.getElementsByTagName("range");
+
 for (var i = 0; i < range.length; i++) {
   var track = document.createElement("track");
     track.id="track-"+range[i].id;
@@ -105,3 +108,4 @@ for (var i = 0; i < range.length; i++) {
     var newNameForRange=range[i].id;
     RangeOtane[newNameForRange] = newObjet;
 }
+// })
